@@ -1,25 +1,13 @@
-<html>
-    <head>
-        <title>Django Girls blog</title>
-    </head>
-    
-    <body>
-        <div>
-            <h1><a href="/">Django Girls Blog</a></h1>
-        </div>
+{% extends 'blog/base.html' %}
 
-        {% for post in posts %}
-            <div>
-            <p>published: {{post.published_date }}</p>
-            <h2><a href = "">{{ post.title }}</a></p>
-            <p>{{ post.text|linebreaksbr}}<?p>
+{% block content %}
+    <div class="post">
+        {% if post.published_date %}
+            <div class="date">
+                {{ post.published_date }}
             </div>
-        {% endfor %}
-
-        <div>
-            <p>公開日: 2014/06/14, 12:14</p>
-            <h2>2番目の投稿</h2>
-            <p> こんにちは！ よろしくお願いします！ </p>
-        </div>
-    </body>
-</html>
+    {% endif %}
+        <h2>{{ post.title }}</h2>
+        <p>{{ post.text|linebreaksbr }}</p>
+    </div>
+{% endblock %}
